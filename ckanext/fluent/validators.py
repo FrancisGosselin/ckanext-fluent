@@ -143,7 +143,7 @@ def fluent_text(field, schema):
         for name, text in extras.items():
             if not name.startswith(prefix):
                 continue
-            lang = name.split('-', 1)[1]
+            lang = name[len(prefix):]
             m = re.match(BCP_47_LANGUAGE, lang)
             if not m:
                 errors[name] = [_('invalid language code: "%s"') % lang]
@@ -299,7 +299,7 @@ def fluent_tags(field, schema):
         for name, text in extras.items():
             if not name.startswith(prefix):
                 continue
-            lang = name.split('-', 1)[1]
+            lang = name[len(prefix):]
             m = re.match(BCP_47_LANGUAGE, lang)
             if not m:
                 errors[name] = [_('invalid language code: "%s"') % lang]
